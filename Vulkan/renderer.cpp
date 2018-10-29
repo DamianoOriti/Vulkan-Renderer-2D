@@ -68,7 +68,7 @@ Renderer::~Renderer()
 
 	vkDestroyDevice(m_device, nullptr);
 
-	if (enable_validation_layers)
+	if (c_enable_validation_layers)
 	{
 		destroy_debug_utils_messenger_ext(m_instance, m_callback, nullptr);
 	}
@@ -196,7 +196,7 @@ void Renderer::create_model(const std::vector<Vertex>& vertices, const char* ima
 
 void Renderer::create_instance()
 {
-	if (enable_validation_layers && !check_validation_layer_support())
+	if (c_enable_validation_layers && !check_validation_layer_support())
 	{
 		throw std::runtime_error("validation layers requested, but not available!");
 	}
@@ -217,7 +217,7 @@ void Renderer::create_instance()
 	create_info.enabledExtensionCount   = static_cast<uint32_t>(extensions.size());
 	create_info.ppEnabledExtensionNames = extensions.data();
 
-	if (enable_validation_layers)
+	if (c_enable_validation_layers)
 	{
 		create_info.enabledLayerCount   = static_cast<uint32_t>(c_validation_layers.size());
 		create_info.ppEnabledLayerNames = c_validation_layers.data();
@@ -272,7 +272,7 @@ std::vector<const char*> Renderer::get_required_extensions()
 
 	std::vector<const char*> extensions(glfw_extensions, glfw_extensions + glfw_extension_count);
 
-	if (enable_validation_layers)
+	if (c_enable_validation_layers)
 	{
 		extensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
 	}
@@ -324,7 +324,7 @@ void Renderer::destroy_debug_utils_messenger_ext(VkInstance instance, VkDebugUti
 
 void Renderer::setup_debug_callback()
 {
-	if (!enable_validation_layers)
+	if (!c_enable_validation_layers)
 	{
 		return;
 	}
@@ -480,7 +480,7 @@ void Renderer::create_logical_device()
 	create_info.enabledExtensionCount   = static_cast<uint32_t>(c_device_extensions.size());
 	create_info.ppEnabledExtensionNames = c_device_extensions.data();
 
-	if (enable_validation_layers)
+	if (c_enable_validation_layers)
 	{
 		create_info.enabledLayerCount   = static_cast<uint32_t>(c_validation_layers.size());
 		create_info.ppEnabledLayerNames = c_validation_layers.data();

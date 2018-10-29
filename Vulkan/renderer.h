@@ -40,9 +40,9 @@ private:
 	const std::vector<const char*> c_device_extensions = { VK_KHR_SWAPCHAIN_EXTENSION_NAME };
 
 #ifdef NDEBUG
-	const bool enable_validation_layers = false;
+	const bool c_enable_validation_layers = false;
 #else
-	const bool enable_validation_layers = true;
+	const bool c_enable_validation_layers = true;
 #endif // NDEBUG
 
 	const int c_max_frames_in_flight = 2;
