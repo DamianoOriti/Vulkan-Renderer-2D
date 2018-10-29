@@ -24,6 +24,7 @@ public:
 	struct Vertex;
 
 	Renderer(GLFWwindow* window);
+	Renderer(const Renderer&) = delete;
 	~Renderer();
 
 	void draw_frame(const glm::vec2& camera_position);
